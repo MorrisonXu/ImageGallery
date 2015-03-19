@@ -84,7 +84,7 @@
     [displayImage setImageData:previewData withType:EDisplayBlur withCache:YES];
     displayImage.tag = index;
     displayImage.displayDelegate = self;
-    [displayImage setAnimationFrame];
+//    [displayImage setAnimationFrame];
     
     [_displayImages addObject:displayImage];
     [_photoBrowser addSubview:displayImage];

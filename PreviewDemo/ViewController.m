@@ -68,10 +68,14 @@
     _previewDatas = [[NSMutableArray alloc] init];
     
     JDPreviewData *zero = [[JDPreviewData alloc] init];
+//    [zero initWithURLBlur:@"http://img3.douban.com/view/photo/thumb/public/p362707795.jpg"
+//                   URLHD:@"http://img3.douban.com/view/photo/photo/public/p362707795.jpg"
+//                pathBlur:@"/var/mobile/Containers/Data/Application/523ED23C-67EC-4972-BA61-C5830A12D173/Library/Caches/photo/1422256253555"
+//                  pathHD:@"/var/mobile/Containers/Data/Application/523ED23C-67EC-4972-BA61-C5830A12D173/Library/Caches/photo/1422256253555"];
     [zero initWithURLBlur:@"http://img3.douban.com/view/photo/thumb/public/p362707795.jpg"
-                   URLHD:@"http://img3.douban.com/view/photo/photo/public/p362707795.jpg"
-                pathBlur:@"/var/mobile/Containers/Data/Application/523ED23C-67EC-4972-BA61-C5830A12D173/Library/Caches/photo/1422256253555"
-                  pathHD:@"/var/mobile/Containers/Data/Application/523ED23C-67EC-4972-BA61-C5830A12D173/Library/Caches/photo/1422256253555"];
+                    URLHD:@"http://image.baidu.com/detail/newindex?col=壁纸&tag=全部&tag3=&filter=&hasstock=&dresstype=&dressid=-1&req=&pn=4&pid=14955649614&aid=401725956&setid=-1&user_id=580725873&sort=0&width=1920&height=1200&fr=&from=1"
+                 pathBlur:@"/var/mobile/Containers/Data/Application/523ED23C-67EC-4972-BA61-C5830A12D173/Library/Caches/photo/1422256253555"
+                   pathHD:@"/var/mobile/Containers/Data/Application/523ED23C-67EC-4972-BA61-C5830A12D173/Library/Caches/photo/1422256253555"];
     [_previewDatas addObject:zero];
     
     JDPreviewData *one = [[JDPreviewData alloc] init];

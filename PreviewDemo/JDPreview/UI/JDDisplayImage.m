@@ -10,6 +10,12 @@
 #import "LocalStorage.h"
 #import "WebService.h"
 
+@interface JDDisplayImage ()
+
+- (void)setDisplayFrame;
+
+@end
+
 @implementation JDDisplayImage
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -70,13 +76,29 @@
     if ([LocalStorage existFile:localPath]) {
         [_ivDisplay setImage:[UIImage imageWithContentsOfFile:localPath]];
     } else {
-//        [_ivDisplay setImageWithURLRequest:url placeholderImage:nil success:<#^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)success#> failure:<#^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)failure#>]
+        __weak typeof(self) weakSelf = self;
         
-        [_ivDisplay setImageWithURL:webUrl];
-        if (toCache)
-            [[WebStorage sharedStorage] addImageCache:webUrl localPath:localPath];
+        [_ivDisplay setImageWithURLRequest:[NSURLRequest requestWithURL:webUrl]
+                          placeholderImage:nil
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       __strong typeof(self) strongSelf = weakSelf;
+                                       if (strongSelf) {
+                                           [strongSelf->_ivDisplay setImage:image];
+                                           [strongSelf setDisplayFrame];
+                                           [strongSelf setAnimationFrame];
+                                       }
+                                   }
+                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                       NSLog(@"setImageWithURLRequest Failed!!!!!!!");
+                                   }];
+        
+//        [_ivDisplay setImageWithURL:webUrl];
+//        if (toCache)
+//            [[WebStorage sharedStorage] addImageCache:webUrl localPath:localPath];
     }
-    
+}
+
+- (void)setDisplayFrame {
     _sizeOrigin = _ivDisplay.image.size;
     
     // X & Y轴的缩放比例
@@ -93,16 +115,6 @@
         self.maximumZoomScale = self.frame.size.height / newHeight;
         _frameDisplay = CGRectMake(0, (self.frame.size.height - newHeight) / 2.0, self.frame.size.width, newHeight);
     }
-}
-
-- (void)func {
-    if (_ivDisplay.image == nil) {
-        
-        
-    }
-    
-    
-    
 }
 
 /**
